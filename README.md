@@ -1,5 +1,7 @@
 # Site de Diagnostic Énergétique
 
+![CI/CD Status](https://github.com/Emerson1220/dieupart-expertise/actions/workflows/ci-cd.yml/badge.svg)
+
 ## Description
 
 Site professionnel pour un diagnostiqueur énergétique avec authentification NextAuth et déploiement sur Vercel.

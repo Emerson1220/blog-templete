@@ -1,6 +1,7 @@
 .main {
   min-height: 100vh;
   width: 100%;
+  padding-top: 64px;
 
   section {
     padding: 4rem 2rem;
@@ -24,11 +25,57 @@
   }
 
   .hero {
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    position: relative;
     color: white;
     min-height: 80vh;
     display: flex;
     justify-content: center;
+    align-items: center;
+    padding: 0;
+    overflow: hidden;
+
+    .heroBackground {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+
+      > span {
+        position: unset !important;
+      }
+
+      img {
+        position: relative !important;
+        height: 100% !important;
+      }
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(30, 60, 114, 0.85) 0%,
+        rgba(42, 82, 152, 0.85) 100%
+      );
+      z-index: 2;
+    }
+
+    .content {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 4rem 2rem;
+      width: 100%;
+      max-width: 1200px;
+    }
 
     h1 {
       font-size: 3rem;
@@ -58,6 +105,67 @@
 
   .services {
     background: #f9f9f9;
+    padding: 6rem 2rem !important;
+
+    h2 {
+      margin-bottom: 3rem !important;
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: #1e3c72;
+    }
+
+    .servicesGrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .serviceCard {
+      background: white;
+      padding: 2.5rem 2rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      border: 1px solid rgba(30, 60, 114, 0.1);
+
+      .icon {
+        font-size: 3.5rem;
+        color: #1e3c72;
+        transition: all 0.3s ease;
+        padding: 1.5rem;
+        background: rgba(30, 60, 114, 0.05);
+        border-radius: 50%;
+      }
+
+      h3 {
+        color: #1e3c72;
+        font-size: 1.5rem;
+        margin: 0;
+        font-weight: 600;
+      }
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(30, 60, 114, 0.1);
+        border-color: #1e3c72;
+
+        .icon {
+          transform: scale(1.1);
+          background: #1e3c72;
+          color: white;
+        }
+      }
+    }
   }
 
   .audit {

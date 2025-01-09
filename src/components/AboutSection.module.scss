@@ -4,12 +4,31 @@
 .aboutSection {
   padding: $spacing-xxl 0;
   background-color: $background-light;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background-image: url('/images/logo.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 80%;
+    opacity: 0.03;
+    z-index: 0;
+  }
 }
 
 .container {
   max-width: $container-width;
   margin: 0 auto;
   padding: 0 $spacing-md;
+  position: relative;
 
   h2 {
     text-align: center;
@@ -34,8 +53,43 @@
 
 .featuresGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: $spacing-lg;
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.path {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateY(-50%);
+  z-index: 0;
+  pointer-events: none;
+
+  path {
+    stroke: $primary-color;
+    stroke-width: 3;
+    fill: none;
+    stroke-dasharray: 12 4;
+    opacity: 0.2;
+  }
+
+  circle {
+    fill: $primary-color;
+    opacity: 0.2;
+  }
 }
 
 .featureCard {
@@ -45,6 +99,10 @@
   box-shadow: $shadow-sm;
   transition: $transition-base;
   text-align: center;
+  position: relative;
+  z-index: 1;
+  max-width: 350px;
+  margin: 0 auto;
 
   &:hover {
     transform: translateY(-5px);

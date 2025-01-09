@@ -1,0 +1,81 @@
+@use 'sass:color';
+@import '../styles/variables.scss';
+
+.welcomeSection {
+  padding: $spacing-xxl 0;
+  background-color: $white;
+}
+
+.container {
+  max-width: $container-width;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+  display: flex;
+  gap: $spacing-xl;
+
+  @media (max-width: $breakpoint-lg) {
+    flex-direction: column;
+  }
+}
+
+.content {
+  flex: 0 0 70%;
+  padding-right: $spacing-xl;
+
+  @media (max-width: $breakpoint-lg) {
+    flex: 1;
+    padding-right: 0;
+  }
+
+  h2 {
+    color: $primary-color;
+    font-size: $font-size-xxl;
+    margin-bottom: $spacing-sm;
+  }
+
+  h3 {
+    color: $text-color;
+    font-size: $font-size-xl;
+    margin-bottom: $spacing-lg;
+    font-weight: $font-weight-medium;
+  }
+
+  p {
+    color: $text-light;
+    font-size: $font-size-lg;
+    line-height: 1.8;
+    margin-bottom: $spacing-md;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.imageWrapper {
+  flex: 0 0 30%;
+  position: relative;
+  min-height: 400px;
+  border-radius: $border-radius-lg;
+  overflow: hidden;
+
+  @media (max-width: $breakpoint-lg) {
+    flex: 1;
+    aspect-ratio: 16/9;
+    min-height: auto;
+  }
+
+  img {
+    object-position: center;
+  }
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba($primary-color, 0.3);
+  z-index: 1;
+}

@@ -1,0 +1,110 @@
+@use 'sass:color';
+@import '../styles/variables.scss';
+
+.articlesSection {
+  padding: $spacing-xxl 0;
+  background-color: $background-light;
+
+  h2 {
+    text-align: center;
+    color: $primary-color;
+    font-size: $font-size-xxl;
+    margin-bottom: $spacing-xl;
+  }
+}
+
+.container {
+  max-width: $container-width;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+}
+
+.articlesGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: $spacing-md;
+
+  @media (max-width: $breakpoint-xl) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: $breakpoint-md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.articleCard {
+  background: $white;
+  border-radius: $border-radius-lg;
+  overflow: hidden;
+  box-shadow: $shadow-sm;
+  transition: $transition-base;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: $shadow-lg;
+
+    .overlay {
+      opacity: 0.4;
+    }
+
+    .readMore {
+      color: $primary-color;
+      padding-left: $spacing-xs;
+    }
+  }
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba($primary-color, 0.2);
+  transition: $transition-base;
+  z-index: 1;
+}
+
+.content {
+  padding: $spacing-md;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  h3 {
+    color: $primary-color;
+    font-size: $font-size-lg;
+    margin-bottom: $spacing-sm;
+    font-weight: $font-weight-bold;
+  }
+
+  p {
+    color: $text-light;
+    font-size: $font-size-base;
+    line-height: 1.6;
+    margin-bottom: $spacing-md;
+    flex: 1;
+  }
+}
+
+.readMore {
+  color: $text-light;
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+  transition: $transition-base;
+  display: inline-block;
+}

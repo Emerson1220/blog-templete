@@ -1,0 +1,106 @@
+@use 'sass:color';
+@import '../../styles/variables.scss';
+
+.dashboard {
+  padding: $spacing-xl;
+  max-width: $container-width;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing-xl;
+
+  h1 {
+    color: $primary-color;
+    font-size: $font-size-xxl;
+  }
+}
+
+.addButton {
+  padding: $spacing-sm $spacing-lg;
+  background-color: $primary-color;
+  color: $white;
+  border: none;
+  border-radius: $border-radius-sm;
+  font-weight: $font-weight-medium;
+  cursor: pointer;
+  transition: $transition-base;
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
+  }
+}
+
+.tableContainer {
+  background: $white;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-sm;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: $spacing-md;
+    text-align: left;
+    border-bottom: 1px solid rgba($text-color, 0.1);
+  }
+
+  th {
+    background-color: rgba($primary-color, 0.05);
+    color: $primary-color;
+    font-weight: $font-weight-bold;
+  }
+
+  td {
+    color: $text-color;
+  }
+
+  tbody tr {
+    transition: $transition-base;
+
+    &:hover {
+      background-color: rgba($primary-color, 0.02);
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  gap: $spacing-sm;
+  white-space: nowrap;
+}
+
+.editButton,
+.deleteButton {
+  padding: $spacing-xs $spacing-sm;
+  border: none;
+  border-radius: $border-radius-sm;
+  font-weight: $font-weight-medium;
+  cursor: pointer;
+  transition: $transition-base;
+}
+
+.editButton {
+  background-color: $secondary-color;
+  color: $white;
+
+  &:hover {
+    background-color: darken($secondary-color, 10%);
+  }
+}
+
+.deleteButton {
+  background-color: #dc3545;
+  color: $white;
+
+  &:hover {
+    background-color: darken(#dc3545, 10%);
+  }
+}

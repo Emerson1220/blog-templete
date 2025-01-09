@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { RiDashboardLine } from 'react-icons/ri';
 import styles from './Navbar.module.scss';
 
 export default function Navbar() {
@@ -49,6 +50,13 @@ export default function Navbar() {
         </Link>
         <Link href='/contact' onClick={toggleMenu}>
           Contact
+        </Link>
+        <Link
+          href='/dashboard'
+          className={styles.dashboardLink}
+          onClick={toggleMenu}
+        >
+          <RiDashboardLine size={24} />
         </Link>
       </div>
     </nav>

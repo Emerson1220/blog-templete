@@ -1,0 +1,106 @@
+@use 'sass:color';
+@import '../../styles/variables.scss';
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba($text-color, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: $z-index-modal;
+  padding: $spacing-md;
+}
+
+.modalContent {
+  background: $white;
+  padding: $spacing-lg;
+  border-radius: $border-radius-lg;
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: $shadow-lg;
+
+  h2 {
+    color: $primary-color;
+    font-size: $font-size-xl;
+    margin-bottom: $spacing-lg;
+    text-align: center;
+  }
+}
+
+.closeButton {
+  position: absolute;
+  top: $spacing-sm;
+  right: $spacing-sm;
+  background: none;
+  border: none;
+  font-size: $font-size-xl;
+  color: $text-light;
+  cursor: pointer;
+  padding: $spacing-xs;
+  transition: $transition-base;
+  line-height: 1;
+
+  &:hover {
+    color: $primary-color;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+
+  label {
+    color: $text-color;
+    font-weight: $font-weight-medium;
+  }
+
+  input,
+  textarea {
+    padding: $spacing-sm;
+    border: 1px solid rgba($text-color, 0.2);
+    border-radius: $border-radius-sm;
+    font-family: inherit;
+    transition: $transition-base;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 0 2px rgba($primary-color, 0.1);
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+}
+
+.submitButton {
+  margin-top: $spacing-md;
+  padding: $spacing-sm $spacing-lg;
+  background: $primary-color;
+  color: $white;
+  border: none;
+  border-radius: $border-radius-sm;
+  cursor: pointer;
+  transition: $transition-base;
+  font-weight: $font-weight-medium;
+
+  &:hover {
+    background: darken($primary-color, 10%);
+  }
+}

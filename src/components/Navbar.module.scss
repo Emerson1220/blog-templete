@@ -115,6 +115,23 @@
         }
       }
     }
+
+    .dashboardLink {
+      display: flex;
+      align-items: center;
+      padding: $spacing-xs;
+      border-radius: $border-radius-full;
+      color: $primary-color;
+      margin-left: $spacing-sm;
+
+      &:hover {
+        background: rgba($primary-color, 0.1);
+
+        &::after {
+          width: 0;
+        }
+      }
+    }
   }
 }
 
@@ -142,6 +159,11 @@
 
       a {
         font-size: $font-size-lg;
+        padding: $spacing-sm 0;
+      }
+
+      .dashboardLink {
+        margin-left: 0;
         padding: $spacing-sm 0;
       }
     }

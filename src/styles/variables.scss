@@ -1,0 +1,68 @@
+@use 'sass:color';
+
+// Colors
+$primary-color: #1e3c72;
+$primary-light: color.adjust($primary-color, $lightness: 10%);
+$primary-dark: color.adjust($primary-color, $lightness: -10%);
+$secondary-color: #007bff;
+$text-color: #333;
+$text-light: #666;
+$white: #fff;
+$background-light: #f9f9f9;
+
+// Typography
+$font-family-base: 'Inter', -apple-system, BlinkMacSystemFont,
+  'Segoe UI', Roboto, sans-serif;
+$font-size-base: 1rem;
+$font-size-lg: 1.25rem;
+$font-size-xl: 1.5rem;
+$font-size-xxl: 2.5rem;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 600;
+$line-height-base: 1.5;
+
+// Spacing
+$spacing-xs: 0.5rem;
+$spacing-sm: 1rem;
+$spacing-md: 2rem;
+$spacing-lg: 4rem;
+$spacing-xl: 6rem;
+$spacing-xxl: 8rem;
+
+// Borders
+$border-radius-sm: 5px;
+$border-radius-md: 10px;
+$border-radius-lg: 15px;
+$border-radius-full: 50%;
+
+// Shadows
+$shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 4px 15px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.1);
+
+// Transitions
+$transition-base: all 0.3s ease;
+$transition-fast: all 0.2s ease;
+$transition-slow: all 0.4s ease;
+
+// Breakpoints
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1200px;
+
+// Layout
+$navbar-height: 80px;
+$container-width: 1200px;
+$container-padding: 2rem;
+$grid-gap: 2rem;
+$card-height: 300px;
+
+// Z-index
+$z-index-dropdown: 1000;
+$z-index-sticky: 1020;
+$z-index-fixed: 1030;
+$z-index-modal: 1040;
+$z-index-overlay: 1;
+$z-index-content: 2;

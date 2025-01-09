@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import styles from './Navbar.module.scss';
 
 export default function Navbar() {
@@ -14,7 +15,13 @@ export default function Navbar() {
   return (
     <nav className={styles.navbar}>
       <div className={styles.logo}>
-        <Link href='/'>DieuPart Expertise</Link>
+        <Image
+          src='/images/logo_dieupart-removebg-preview.png'
+          alt='Logo Dieupart'
+          width={70}
+          height={70}
+          priority
+        />
       </div>
 
       <button className={styles.menuButton} onClick={toggleMenu}>

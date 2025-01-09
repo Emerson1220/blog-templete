@@ -1,33 +1,37 @@
+@use 'sass:color';
+@import '../styles/variables.scss';
+
 .navbar {
   display: flex;
   justify-content: space-between;
+  height: $navbar-height;
   align-items: center;
-  padding: 1rem 2rem;
-  background: rgba(255, 255, 255, 0.95);
+  padding: $spacing-sm $spacing-md;
+  background: rgba($white, 0.95);
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: $z-index-fixed;
+  box-shadow: $shadow-sm;
 
   .logo {
-    font-size: 1.8rem;
-    font-weight: bold;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
 
     a {
-      color: #1e3c72;
+      color: $primary-color;
       text-decoration: none;
-      transition: color 0.3s ease;
+      transition: $transition-base;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: $spacing-xs;
 
       &:hover {
-        color: #2a5298;
+        color: $primary-light;
       }
     }
   }
@@ -37,16 +41,16 @@
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0.5rem;
-    z-index: 100;
+    padding: $spacing-xs;
+    z-index: $z-index-dropdown;
 
     .hamburger {
       display: block;
       width: 24px;
       height: 2px;
-      background: #1e3c72;
+      background: $primary-color;
       position: relative;
-      transition: all 0.3s ease-in-out;
+      transition: $transition-base;
 
       &::before,
       &::after {
@@ -54,8 +58,8 @@
         position: absolute;
         width: 24px;
         height: 2px;
-        background: #1e3c72;
-        transition: all 0.3s ease-in-out;
+        background: $primary-color;
+        transition: $transition-base;
       }
 
       &::before {
@@ -82,14 +86,14 @@
 
   .navLinks {
     display: flex;
-    gap: 2rem;
+    gap: $spacing-md;
     margin-left: auto;
 
     a {
-      color: #333;
+      color: $text-color;
       text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s ease;
+      font-weight: $font-weight-medium;
+      transition: $transition-base;
       position: relative;
 
       &::after {
@@ -99,12 +103,12 @@
         height: 2px;
         bottom: -4px;
         left: 0;
-        background-color: #1e3c72;
-        transition: width 0.3s ease;
+        background-color: $primary-color;
+        transition: $transition-base;
       }
 
       &:hover {
-        color: #1e3c72;
+        color: $primary-color;
 
         &::after {
           width: 100%;
@@ -114,7 +118,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: $breakpoint-md) {
   .navbar {
     .menuButton {
       display: block;
@@ -126,19 +130,19 @@
       left: -100%;
       width: 70%;
       height: 100vh;
-      background: white;
+      background: $white;
       flex-direction: column;
-      padding: 6rem 2rem 2rem;
-      transition: left 0.3s ease;
-      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+      padding: $spacing-xl $spacing-md $spacing-md;
+      transition: $transition-base;
+      box-shadow: $shadow-sm;
 
       &.open {
         left: 0;
       }
 
       a {
-        font-size: 1.2rem;
-        padding: 1rem 0;
+        font-size: $font-size-lg;
+        padding: $spacing-sm 0;
       }
     }
   }

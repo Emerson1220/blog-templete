@@ -14,7 +14,6 @@
   }
 
   .container {
-    // max-width: $container-width;
     margin: 0 auto;
     padding: 0 $container-padding;
   }
@@ -24,87 +23,43 @@
   width: 100%;
   margin-bottom: $spacing-xl;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: $spacing-md;
-  position: relative;
-  padding-right: 50px;
+  flex-direction: column;
 
   h3 {
     text-align: left;
-    color: $white;
+    color: $primary-color;
     font-size: $font-size-xl;
     font-weight: $font-weight-bold;
-    background-color: $primary-color;
+    // background-color: $primary-color;
     padding: $spacing-sm $spacing-md;
     border-radius: $border-radius-lg;
     display: inline-block;
-    box-shadow: $shadow-sm;
-    white-space: nowrap;
-    height: fit-content;
-    flex-shrink: 0;
+    // box-shadow: $shadow-sm;
+    margin-bottom: $spacing-md;
   }
 }
 
 .servicesColumn {
-  display: flex;
-  overflow-x: hidden;
-  gap: $spacing-md;
-  padding: $spacing-sm 0;
-  -webkit-overflow-scrolling: touch;
-  scroll-behavior: smooth;
-  width: 100%;
   position: relative;
+  width: 100%;
+  padding: 0 40px;
 }
 
-.navigationButton {
-  width: 40px;
-  height: 40px;
-  background-color: $white;
-  border: none;
-  border-radius: 50%;
+.swiper {
+  overflow: visible;
+  width: 100%;
+}
+
+.swiperSlide {
+  height: auto;
   display: flex;
-  align-items: center;
   justify-content: center;
-  cursor: pointer;
-  box-shadow: $shadow-md;
-  z-index: 10;
-  transition: $transition-base;
-  color: $primary-color;
-  font-size: 1.5rem;
-  flex-shrink: 0;
-
-  &:hover {
-    background-color: $primary-color;
-    color: $white;
-  }
-
-  &.prev {
-    margin: 0 $spacing-md;
-  }
-
-  &.next {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    &:hover {
-      background-color: $white;
-      color: $primary-color;
-    }
-  }
 }
 
 .serviceCard {
-  min-width: 300px;
+  width: 100%;
   max-width: 300px;
   height: 280px;
-  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   border-radius: $border-radius-lg;
@@ -112,10 +67,6 @@
   box-shadow: $shadow-md;
   transition: $transition-base;
   cursor: pointer;
-
-  &:last-child {
-    margin-right: $spacing-md;
-  }
 
   &:hover {
     transform: translateY(-5px);
@@ -173,12 +124,16 @@
   }
 
   .serviceCard {
-    min-width: 260px;
-    max-width: 260px;
+    width: 260px;
     height: 260px;
 
     .cardImage {
       height: 140px;
     }
+  }
+
+  .swiper {
+    padding: 0 40px;
+    margin: 0 -40px;
   }
 }

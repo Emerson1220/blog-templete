@@ -1,21 +1,22 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import styles from './ServicesSection.module.scss';
 import { GiChemicalDrop, GiWaterDrop } from 'react-icons/gi';
 import { BiRuler } from 'react-icons/bi';
-import {
-  FaToilet,
-  FaGasPump,
-  FaBolt,
-  FaBug,
-  FaChevronLeft,
-  FaChevronRight,
-} from 'react-icons/fa';
+import { FaToilet, FaGasPump, FaBolt, FaBug } from 'react-icons/fa';
 import { MdEnergySavingsLeaf } from 'react-icons/md';
 import { TbTemperature } from 'react-icons/tb';
 import ServiceModal from './ServiceModal';
 import Image from 'next/image';
+
+// Import Swiper
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper/modules';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
 
 interface ServiceCardProps {
   icon: React.ReactNode;
@@ -44,24 +45,6 @@ export default function ServicesSection() {
   const [modalService, setModalService] = useState<string | null>(
     null
   );
-  const vendreRef = useRef<HTMLDivElement>(null);
-  const louerRef = useRef<HTMLDivElement>(null);
-
-  const scroll = (
-    containerRef: React.MutableRefObject<HTMLDivElement | null>,
-    direction: 'left' | 'right'
-  ) => {
-    if (containerRef.current) {
-      const scrollAmount = 300 + 16; // card width + gap
-      const newScrollLeft =
-        containerRef.current.scrollLeft +
-        (direction === 'left' ? -scrollAmount : scrollAmount);
-      containerRef.current.scrollTo({
-        left: newScrollLeft,
-        behavior: 'smooth',
-      });
-    }
-  };
 
   const openModal = (service: string) => {
     setModalService(service);
@@ -147,58 +130,100 @@ export default function ServicesSection() {
         <div className={styles.servicesFlex}>
           <div className={styles.servicesContains}>
             <h3>Vous vendez</h3>
-            <button
-              className={`${styles.navigationButton} ${styles.prev}`}
-              onClick={() => scroll(vendreRef, 'left')}
-            >
-              <FaChevronLeft />
-            </button>
-            <div className={styles.servicesColumn} ref={vendreRef}>
-              {services
-                .filter((service) => service.tags === 'vendre')
-                .map((service, index) => (
-                  <ServiceCard
-                    key={index}
-                    icon={service.icon}
-                    title={service.title}
-                    onClick={service.onClick}
-                  />
-                ))}
+            <div className={styles.servicesColumn}>
+              <Swiper
+                modules={[Navigation]}
+                navigation={true}
+                spaceBetween={16}
+                className={`${styles.swiper} swiper-vendre`}
+                breakpoints={{
+                  320: {
+                    slidesPerView: 1,
+                    spaceBetween: 16,
+                  },
+                  640: {
+                    slidesPerView: 2,
+                    spaceBetween: 16,
+                  },
+                  768: {
+                    slidesPerView: 3,
+                    spaceBetween: 16,
+                  },
+                  1024: {
+                    slidesPerView: 4,
+                    spaceBetween: 16,
+                  },
+                  1280: {
+                    slidesPerView: 5,
+                    spaceBetween: 16,
+                  },
+                }}
+              >
+                {services
+                  .filter((service) => service.tags === 'vendre')
+                  .map((service, index) => (
+                    <SwiperSlide
+                      key={index}
+                      className={styles.swiperSlide}
+                    >
+                      <ServiceCard
+                        icon={service.icon}
+                        title={service.title}
+                        onClick={service.onClick}
+                      />
+                    </SwiperSlide>
+                  ))}
+              </Swiper>
             </div>
-            <button
-              className={`${styles.navigationButton} ${styles.next}`}
-              onClick={() => scroll(vendreRef, 'right')}
-            >
-              <FaChevronRight />
-            </button>
           </div>
 
           <div className={styles.servicesContains}>
             <h3>Vous louez</h3>
-            <button
-              className={`${styles.navigationButton} ${styles.prev}`}
-              onClick={() => scroll(louerRef, 'left')}
-            >
-              <FaChevronLeft />
-            </button>
-            <div className={styles.servicesColumn} ref={louerRef}>
-              {services
-                .filter((service) => service.tags === 'louer')
-                .map((service, index) => (
-                  <ServiceCard
-                    key={index}
-                    icon={service.icon}
-                    title={service.title}
-                    onClick={service.onClick}
-                  />
-                ))}
+            <div className={styles.servicesColumn}>
+              <Swiper
+                modules={[Navigation]}
+                navigation={true}
+                spaceBetween={16}
+                className={`${styles.swiper} swiper-louer`}
+                breakpoints={{
+                  320: {
+                    slidesPerView: 1,
+                    spaceBetween: 16,
+                  },
+                  640: {
+                    slidesPerView: 2,
+                    spaceBetween: 16,
+                  },
+                  768: {
+                    slidesPerView: 3,
+                    spaceBetween: 16,
+                  },
+                  1024: {
+                    slidesPerView: 4,
+                    spaceBetween: 16,
+                  },
+                  1280: {
+                    slidesPerView: 5,
+                    spaceBetween: 16,
+                  },
+                }}
+              >
+                {services
+                  .filter((service) => service.tags === 'louer')
+                  .map((service, index) => (
+                    <SwiperSlide
+                      key={index}
+                      className={styles.swiperSlide}
+                    >
+                      <ServiceCard
+                        icon={service.icon}
+                        title={service.title}
+                        onClick={service.onClick}
+                      />
+                    </SwiperSlide>
+                  ))}
+              </Swiper>
             </div>
-            <button
-              className={`${styles.navigationButton} ${styles.next}`}
-              onClick={() => scroll(louerRef, 'right')}
-            >
-              <FaChevronRight />
-            </button>
           </div>
         </div>
       </div>

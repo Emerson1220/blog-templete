@@ -19,3 +19,42 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Styles pour les boutons de navigation Swiper */
+.swiper-vendre .swiper-button-next,
+.swiper-vendre .swiper-button-prev,
+.swiper-louer .swiper-button-next,
+.swiper-louer .swiper-button-prev {
+  width: 40px !important;
+  height: 40px !important;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  color: #007bff !important;
+  margin-top: -20px !important;
+}
+
+.swiper-vendre .swiper-button-next:hover,
+.swiper-vendre .swiper-button-prev:hover,
+.swiper-louer .swiper-button-next:hover,
+.swiper-louer .swiper-button-prev:hover {
+  background-color: #007bff;
+  color: white !important;
+}
+
+.swiper-vendre .swiper-button-next::after,
+.swiper-vendre .swiper-button-prev::after,
+.swiper-louer .swiper-button-next::after,
+.swiper-louer .swiper-button-prev::after {
+  font-size: 1.25rem !important;
+}
+
+.swiper-button-disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+}
+
+.swiper-button-disabled:hover {
+  background-color: white !important;
+  color: #007bff !important;
+}

@@ -1,8 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
-import styles from './dashboard.module.scss';
+import styles from './page.module.scss';
 import ArticleModal from '@/components/dashboard/ArticleModal';
 
 interface DashboardArticle {
@@ -14,7 +13,7 @@ interface DashboardArticle {
   link: string;
 }
 
-export default function Dashboard() {
+export default function PostsPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedArticle, setSelectedArticle] =
     useState<DashboardArticle | null>(null);
@@ -26,7 +25,7 @@ export default function Dashboard() {
       description:
         'Découvrez tous les diagnostics nécessaires pour vendre votre bien',
       createdAt: '2024-01-15',
-      image: '/images/article1.jpg',
+      image: '/images/placeholder.png',
       link: '/articles/diagnostics-vente',
     },
     {
@@ -35,7 +34,7 @@ export default function Dashboard() {
       description:
         'Comment améliorer la performance énergétique de votre logement',
       createdAt: '2024-01-16',
-      image: '/images/article2.jpg',
+      image: '/images/placeholder.png',
       link: '/articles/performance-energetique',
     },
   ];
@@ -53,20 +52,16 @@ export default function Dashboard() {
   return (
     <div className={styles.dashboardContainer}>
       <div className={styles.header}>
-        <Link href='/' className={styles.backLink}>
-          ← Retour au site
-        </Link>
         <h1>Gestion des Articles</h1>
-      </div>
-
-      <div className={styles.content}>
         <button
           className={styles.addButton}
           onClick={() => handleEdit(null)}
         >
           + Nouvel Article
         </button>
+      </div>
 
+      <div className={styles.content}>
         <div className={styles.tableContainer}>
           <table className={styles.table}>
             <thead>

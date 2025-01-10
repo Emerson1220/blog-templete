@@ -1,5 +1,5 @@
 @use 'sass:color';
-@import '../../styles/variables.scss';
+@use '../../styles/variables' as *;
 
 .dashboard {
   padding: $spacing-xl;
@@ -30,7 +30,7 @@
   transition: $transition-base;
 
   &:hover {
-    background-color: darken($primary-color, 10%);
+    background-color: color.adjust($primary-color, $lightness: -10%);
   }
 }
 
@@ -92,7 +92,10 @@
   color: $white;
 
   &:hover {
-    background-color: darken($secondary-color, 10%);
+    background-color: color.adjust(
+      $secondary-color,
+      $lightness: -10%
+    );
   }
 }
 
@@ -101,6 +104,6 @@
   color: $white;
 
   &:hover {
-    background-color: darken(#dc3545, 10%);
+    background-color: color.adjust(#dc3545, $lightness: -10%);
   }
 }

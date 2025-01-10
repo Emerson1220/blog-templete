@@ -1,5 +1,5 @@
 @use 'sass:color';
-@import '../styles/variables.scss';
+@use '../styles/variables' as *;
 
 .footer {
   background-color: $primary-color;
@@ -85,7 +85,10 @@
   transition: $transition-base;
 
   &:hover {
-    background-color: darken($secondary-color, 10%);
+    background-color: color.adjust(
+      $secondary-color,
+      $lightness: -10%
+    );
     transform: translateY(-2px);
   }
 }

@@ -1,5 +1,5 @@
 @use 'sass:color';
-@import '../styles/variables.scss';
+@use '../../styles/variables' as *;
 
 .hero {
   position: relative;
@@ -44,19 +44,18 @@
     font-size: $font-size-xl;
     margin-bottom: $spacing-md;
   }
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: $spacing-lg;
 
-  .cta {
-    display: inline-block;
-    padding: $spacing-sm $spacing-md;
-    background: $secondary-color;
-    color: $white;
-    text-decoration: none;
-    border-radius: $border-radius-sm;
-    font-weight: $font-weight-medium;
-    transition: $transition-base;
+    @media (max-width: $breakpoint-md) {
+      justify-content: center;
+    }
 
-    &:hover {
-      background: darken($secondary-color, 10%);
+    img {
+      filter: brightness(0) invert(1);
     }
   }
 }

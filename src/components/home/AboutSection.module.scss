@@ -1,5 +1,5 @@
 @use 'sass:color';
-@import '../styles/variables.scss';
+@use '../../styles/variables' as *;
 
 .aboutSection {
   padding: $spacing-xxl 0;
@@ -15,10 +15,6 @@
     transform: translate(-50%, -50%);
     width: 100%;
     height: 100%;
-    background-image: url('/images/logo.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 80%;
     opacity: 0.03;
     z-index: 0;
   }
@@ -32,7 +28,7 @@
 
   h2 {
     text-align: center;
-    font-size: $font-size-xl;
+    font-size: $font-size-xxl;
     color: $primary-color;
     margin-bottom: $spacing-xl;
     position: relative;
@@ -56,7 +52,6 @@
   grid-template-columns: repeat(3, 1fr);
   gap: $spacing-lg;
   position: relative;
-  max-width: 1200px;
   margin: 0 auto;
 
   @media (max-width: 1024px) {
@@ -68,32 +63,32 @@
   }
 }
 
-.path {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transform: translateY(-50%);
-  z-index: 0;
-  pointer-events: none;
+// .path {
+//   position: absolute;
+//   top: 50%;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+//   transform: translateY(-50%);
+//   z-index: 0;
+//   pointer-events: none;
 
-  path {
-    stroke: $primary-color;
-    stroke-width: 3;
-    fill: none;
-    stroke-dasharray: 12 4;
-    opacity: 0.2;
-  }
+//   path {
+//     stroke: $primary-color;
+//     stroke-width: 3;
+//     fill: none;
+//     stroke-dasharray: 12 4;
+//     opacity: 0.2;
+//   }
 
-  circle {
-    fill: $primary-color;
-    opacity: 0.2;
-  }
-}
+//   circle {
+//     fill: $primary-color;
+//     opacity: 0.2;
+//   }
+// }
 
 .featureCard {
-  background-color: $white;
+  background-color: white;
   padding: $spacing-lg;
   border-radius: $border-radius-md;
   box-shadow: $shadow-sm;
@@ -101,7 +96,7 @@
   text-align: center;
   position: relative;
   z-index: 1;
-  max-width: 350px;
+  max-width: 3 50px;
   margin: 0 auto;
 
   &:hover {

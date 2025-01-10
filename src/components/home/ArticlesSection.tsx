@@ -55,7 +55,7 @@ export default function ArticlesSection() {
             >
               <div className={styles.imageWrapper}>
                 <Image
-                  src={article.image}
+                  src='/images/placeholder.png'
                   alt={article.title}
                   fill
                   style={{ objectFit: 'cover' }}

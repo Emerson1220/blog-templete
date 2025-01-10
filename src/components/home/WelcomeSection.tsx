@@ -30,8 +30,8 @@ export default function WelcomeSection() {
 
         <div className={styles.imageWrapper}>
           <Image
-            src='/images/hero-bg.jpg'
-            alt='Diagnostic immobilier'
+            src='/images/placeholder.png'
+            alt='DieuPart Diagnostic'
             fill
             style={{ objectFit: 'cover' }}
           />

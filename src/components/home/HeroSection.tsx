@@ -23,11 +23,17 @@ export default function HeroSection() {
         <div className={styles.overlay}></div>
       </div>
       <div className={styles.content}>
+        <div className={styles.logo}>
+          <Image
+            src='/images/logo_dieupart-removebg-preview.png'
+            alt='Logo Dieupart'
+            width={350}
+            height={350}
+            priority
+          />
+        </div>
         <h1>Diagnostics et contrôles immobiliers</h1>
         <p>Des solutions durables pour votre habitat</p>
-        <a href='/auth/signin' className={styles.cta}>
-          Connexion
-        </a>
       </div>
     </section>
   );

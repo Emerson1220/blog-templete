@@ -1,9 +1,9 @@
 @use 'sass:color';
-@import '../styles/variables.scss';
+@use '../../styles/variables' as *;
 
 .articlesSection {
   padding: $spacing-xxl 0;
-  background-color: $background-light;
+  background-color: $white;
 
   h2 {
     text-align: center;

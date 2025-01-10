@@ -1,0 +1,84 @@
+@use 'sass:color';
+@use '../../styles/variables' as *;
+
+.dashboardLayout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 60px;
+  background-color: $primary-color;
+  transition: $transition-base;
+  position: fixed;
+  height: 100vh;
+  z-index: $z-index-fixed;
+}
+
+.sidebarContent {
+  display: flex;
+  flex-direction: column;
+  padding: $spacing-sm;
+  gap: $spacing-sm;
+}
+
+.backLink {
+  color: $white;
+  text-decoration: none;
+  font-size: $font-size-lg;
+  padding: $spacing-sm;
+  opacity: 0.7;
+  transition: $transition-base;
+  text-align: center;
+  border-bottom: 1px solid rgba($white, 0.1);
+  margin-bottom: $spacing-sm;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.navItem {
+  color: rgba($white, 0.7);
+  text-decoration: none;
+  font-size: $font-size-xl;
+  padding: $spacing-sm;
+  border-radius: $border-radius-sm;
+  transition: $transition-base;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    color: $white;
+    background: rgba($white, 0.1);
+  }
+
+  &.active {
+    color: $white;
+    background: rgba($white, 0.2);
+  }
+}
+
+.content {
+  flex: 1;
+  margin-left: 60px;
+  padding: $spacing-lg;
+  background-color: $background-light;
+}
+
+@media (max-width: $breakpoint-md) {
+  .sidebar {
+    width: 50px;
+  }
+
+  .content {
+    margin-left: 50px;
+    padding: $spacing-md;
+  }
+
+  .navItem {
+    font-size: $font-size-lg;
+    padding: $spacing-xs;
+  }
+}

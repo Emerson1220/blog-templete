@@ -1,5 +1,5 @@
 @use 'sass:color';
-@import '../../styles/variables.scss';
+@use '../../styles/variables' as *;
 
 .modalOverlay {
   position: fixed;
@@ -101,6 +101,6 @@
   font-weight: $font-weight-medium;
 
   &:hover {
-    background: darken($primary-color, 10%);
+    background: color.adjust($primary-color, $lightness: -10%);
   }
 }

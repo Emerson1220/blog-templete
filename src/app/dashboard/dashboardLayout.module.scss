@@ -13,13 +13,26 @@
   position: fixed;
   height: 100vh;
   z-index: $z-index-fixed;
+
+  @media (max-width: $breakpoint-sm) {
+    width: 100%;
+    height: auto;
+    bottom: 0;
+    top: auto;
+  }
 }
 
 .sidebarContent {
   display: flex;
   flex-direction: column;
-  padding: $spacing-sm;
+  // padding: $spacing-sm;
   gap: $spacing-sm;
+
+  @media (max-width: $breakpoint-sm) {
+    flex-direction: row;
+    justify-content: space-around;
+    padding: $spacing-xs;
+  }
 }
 
 .backLink {
@@ -32,6 +45,12 @@
   text-align: center;
   border-bottom: 1px solid rgba($white, 0.1);
   margin-bottom: $spacing-sm;
+
+  @media (max-width: $breakpoint-sm) {
+    border-bottom: none;
+    margin-bottom: 0;
+    border-right: 1px solid rgba($white, 0.1);
+  }
 
   &:hover {
     opacity: 1;
@@ -49,6 +68,11 @@
   align-items: center;
   justify-content: center;
 
+  @media (max-width: $breakpoint-sm) {
+    font-size: $font-size-lg;
+    padding: $spacing-xs;
+  }
+
   &:hover {
     color: $white;
     background: rgba($white, 0.1);
@@ -65,20 +89,10 @@
   margin-left: 60px;
   padding: $spacing-lg;
   background-color: $background-light;
-}
 
-@media (max-width: $breakpoint-md) {
-  .sidebar {
-    width: 50px;
-  }
-
-  .content {
-    margin-left: 50px;
+  @media (max-width: $breakpoint-sm) {
+    margin-left: 0;
+    margin-bottom: 60px;
     padding: $spacing-md;
-  }
-
-  .navItem {
-    font-size: $font-size-lg;
-    padding: $spacing-xs;
   }
 }

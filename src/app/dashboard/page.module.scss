@@ -1,109 +1,155 @@
 @use 'sass:color';
 @use '../../styles/variables' as *;
 
-.dashboard {
-  padding: $spacing-xl;
-  max-width: $container-width;
-  margin: 0 auto;
+.dashboardContainer {
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  padding: 20px;
+
+  @media (max-width: 768px) {
+    padding: 10px;
+  }
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: $spacing-xl;
+  margin-bottom: 20px;
+  gap: 20px;
 
   h1 {
-    color: $primary-color;
-    font-size: $font-size-xxl;
+    margin: 0;
+    font-size: 2rem;
+    color: #333;
+
+    @media (max-width: 768px) {
+      font-size: 1.5rem;
+    }
   }
 }
 
 .addButton {
-  padding: $spacing-sm $spacing-lg;
-  background-color: $primary-color;
-  color: $white;
+  padding: 10px 20px;
+  background-color: #0070f3;
+  color: white;
   border: none;
-  border-radius: $border-radius-sm;
-  font-weight: $font-weight-medium;
+  border-radius: 4px;
   cursor: pointer;
-  transition: $transition-base;
+  font-size: 1rem;
+  transition: background-color 0.2s;
 
   &:hover {
-    background-color: color.adjust($primary-color, $lightness: -10%);
+    background-color: #0060df;
+  }
+
+  @media (max-width: 768px) {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+}
+
+.content {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 768px) {
+    padding: 10px;
   }
 }
 
 .tableContainer {
-  background: $white;
-  border-radius: $border-radius-lg;
-  box-shadow: $shadow-sm;
   overflow-x: auto;
+  margin: 0 -20px;
+  padding: 0 20px;
+
+  @media (max-width: 768px) {
+    margin: 0 -10px;
+    padding: 0 10px;
+  }
 }
 
 .table {
   width: 100%;
   border-collapse: collapse;
+  min-width: 600px;
 
   th,
   td {
-    padding: $spacing-md;
+    padding: 12px;
     text-align: left;
-    border-bottom: 1px solid rgba($text-color, 0.1);
+    border-bottom: 1px solid #eee;
+    color: #000;
+
+    @media (max-width: 768px) {
+      padding: 8px;
+    }
   }
 
   th {
-    background-color: rgba($primary-color, 0.05);
-    color: $primary-color;
-    font-weight: $font-weight-bold;
+    font-weight: 600;
+    color: #666;
+    background-color: #f9f9f9;
   }
 
-  td {
-    color: $text-color;
+  tr:hover {
+    background-color: #f5f5f5;
   }
-
-  tbody tr {
-    transition: $transition-base;
-
-    &:hover {
-      background-color: rgba($primary-color, 0.02);
-    }
-  }
-}
-
-.actions {
-  display: flex;
-  gap: $spacing-sm;
-  white-space: nowrap;
 }
 
 .editButton,
 .deleteButton {
-  padding: $spacing-xs $spacing-sm;
-  border: none;
-  border-radius: $border-radius-sm;
-  font-weight: $font-weight-medium;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.9rem;
   cursor: pointer;
-  transition: $transition-base;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  @media (max-width: 768px) {
+    padding: 4px 8px;
+    font-size: 0.8rem;
+  }
 }
 
 .editButton {
-  background-color: $secondary-color;
-  color: $white;
+  background-color: #0070f3;
+  color: white;
+  margin-right: 8px;
 
-  &:hover {
-    background-color: color.adjust(
-      $secondary-color,
-      $lightness: -10%
-    );
+  &:hover:not(:disabled) {
+    background-color: #0060df;
   }
 }
 
 .deleteButton {
   background-color: #dc3545;
-  color: $white;
+  color: white;
 
-  &:hover {
-    background-color: color.adjust(#dc3545, $lightness: -10%);
+  &:hover:not(:disabled) {
+    background-color: #c82333;
   }
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.error {
+  background-color: #fff5f5;
+  color: #dc3545;
+  padding: 12px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  border: 1px solid #ffebeb;
 }

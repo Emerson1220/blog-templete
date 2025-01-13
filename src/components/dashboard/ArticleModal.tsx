@@ -2,49 +2,41 @@
 
 import { useState, useEffect } from 'react';
 import styles from './ArticleModal.module.scss';
-
-interface Article {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  link: string;
-  createdAt: string;
-}
+import { Article } from '@/hooks/useArticles';
 
 interface ArticleModalProps {
   isOpen: boolean;
-  onClose: () => void;
   article: Article | null;
-  onSave: (article: Article) => void;
+  onClose: () => void;
+  onSave: (
+    data: Omit<Article, 'id' | 'createdAt' | 'updatedAt'>
+  ) => void;
+  loading?: boolean;
 }
 
 export default function ArticleModal({
   isOpen,
-  onClose,
   article,
+  onClose,
   onSave,
+  loading = false,
 }: ArticleModalProps) {
-  const [formData, setFormData] = useState<Article>({
-    id: 0,
+  const [formData, setFormData] = useState({
     title: '',
     description: '',
+    content: '',
     image: '',
-    link: '',
-    createdAt: new Date().toISOString().split('T')[0],
+    slug: '',
   });
 
   useEffect(() => {
     if (article) {
-      setFormData(article);
-    } else {
       setFormData({
-        id: Date.now(),
-        title: '',
-        description: '',
-        image: '',
-        link: '',
-        createdAt: new Date().toISOString().split('T')[0],
+        title: article.title,
+        description: article.description,
+        content: article.content,
+        image: article.image,
+        slug: article.slug,
       });
     }
   }, [article]);
@@ -54,90 +46,110 @@ export default function ArticleModal({
     onSave(formData);
   };
 
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
   if (!isOpen) return null;
 
   return (
-    <div className={styles.modalOverlay} onClick={onClose}>
-      <div
-        className={styles.modalContent}
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button className={styles.closeButton} onClick={onClose}>
-          ×
-        </button>
-
-        <h2>
-          {article ? 'Modifier l&apos;article' : 'Nouvel article'}
-        </h2>
+    <div className={styles.modalOverlay}>
+      <div className={styles.modal}>
+        <div className={styles.modalHeader}>
+          <h2>{article ? "Modifier l'article" : 'Nouvel article'}</h2>
+          <button className={styles.closeButton} onClick={onClose}>
+            ×
+          </button>
+        </div>
 
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.formGroup}>
-            <label htmlFor='title'>Titre*</label>
+            <label htmlFor='title'>Titre</label>
             <input
               type='text'
               id='title'
+              name='title'
               value={formData.title}
-              onChange={(e) =>
-                setFormData((prev) => ({
-                  ...prev,
-                  title: e.target.value,
-                }))
-              }
+              onChange={handleChange}
               required
+              disabled={loading}
             />
           </div>
 
           <div className={styles.formGroup}>
-            <label htmlFor='description'>Description*</label>
+            <label htmlFor='description'>Description</label>
             <textarea
               id='description'
+              name='description'
               value={formData.description}
-              onChange={(e) =>
-                setFormData((prev) => ({
-                  ...prev,
-                  description: e.target.value,
-                }))
-              }
+              onChange={handleChange}
               required
-              rows={4}
+              disabled={loading}
             />
           </div>
 
           <div className={styles.formGroup}>
-            <label htmlFor='image'>URL de l&apos;image*</label>
+            <label htmlFor='content'>Contenu</label>
+            <textarea
+              id='content'
+              name='content'
+              value={formData.content}
+              onChange={handleChange}
+              required
+              disabled={loading}
+              rows={10}
+            />
+          </div>
+
+          <div className={styles.formGroup}>
+            <label htmlFor='image'>Image URL</label>
             <input
+              // type='url'
               type='text'
               id='image'
+              name='image'
               value={formData.image}
-              onChange={(e) =>
-                setFormData((prev) => ({
-                  ...prev,
-                  image: e.target.value,
-                }))
-              }
+              onChange={handleChange}
               required
+              disabled={loading}
             />
           </div>
 
           <div className={styles.formGroup}>
-            <label htmlFor='link'>Lien de l&apos;article*</label>
+            <label htmlFor='slug'>Slug</label>
             <input
               type='text'
-              id='link'
-              value={formData.link}
-              onChange={(e) =>
-                setFormData((prev) => ({
-                  ...prev,
-                  link: e.target.value,
-                }))
-              }
+              id='slug'
+              name='slug'
+              value={formData.slug}
+              onChange={handleChange}
               required
+              disabled={loading}
+              pattern='[a-z0-9-]+'
+              title='Uniquement des lettres minuscules, des chiffres et des tirets'
             />
           </div>
 
-          <button type='submit' className={styles.submitButton}>
-            {article ? 'Mettre à jour' : 'Créer'}
-          </button>
+          <div className={styles.formActions}>
+            <button
+              type='button'
+              onClick={onClose}
+              className={styles.cancelButton}
+              disabled={loading}
+            >
+              Annuler
+            </button>
+            <button
+              type='submit'
+              className={styles.submitButton}
+              disabled={loading}
+            >
+              {loading ? 'Enregistrement...' : 'Enregistrer'}
+            </button>
+          </div>
         </form>
       </div>
     </div>

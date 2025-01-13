@@ -32,6 +32,9 @@ export default function DashboardLayout({
           <Link href='/' className={styles.backLink}>
             <FaArrowLeft size={24} />
           </Link>
+          {/* <Link href='/' className={styles.backLink}>
+            <FaNewspaper size={64} />
+          </Link> */}
           {navItems.map((item) => (
             <Link
               key={item.href}

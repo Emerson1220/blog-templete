@@ -108,3 +108,23 @@
   transition: $transition-base;
   display: inline-block;
 }
+
+.loading,
+.error {
+  text-align: center;
+  padding: $spacing-xl;
+  background: $white;
+  border-radius: $border-radius-lg;
+  margin-top: $spacing-lg;
+  box-shadow: $shadow-sm;
+}
+
+.loading {
+  color: $text-light;
+  font-size: $font-size-lg;
+}
+
+.error {
+  color: $error-color;
+  font-size: $font-size-lg;
+}

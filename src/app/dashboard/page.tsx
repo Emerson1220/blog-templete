@@ -3,51 +3,114 @@
 import { useState } from 'react';
 import styles from './page.module.scss';
 import ArticleModal from '@/components/dashboard/ArticleModal';
+import Toast from '@/components/Toast';
+import { useArticles, Article } from '@/hooks/useArticles';
+import { useArticlesCrud } from '@/hooks/useArticlesCrud';
 
-interface DashboardArticle {
-  id: number;
-  title: string;
-  description: string;
-  createdAt: string;
-  image: string;
-  link: string;
+interface Notification {
+  message: string;
+  type: 'success' | 'error';
 }
 
-export default function PostsPage() {
+export default function DashboardPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedArticle, setSelectedArticle] =
-    useState<DashboardArticle | null>(null);
+    useState<Article | null>(null);
+  const [notification, setNotification] =
+    useState<Notification | null>(null);
+  const { articles, loading: loadingArticles } = useArticles();
+  const {
+    createArticle,
+    updateArticle,
+    deleteArticle,
+    loading: loadingCrud,
+    error,
+  } = useArticlesCrud();
 
-  const mockArticles: DashboardArticle[] = [
-    {
-      id: 1,
-      title: 'Les diagnostics obligatoires pour la vente',
-      description:
-        'Découvrez tous les diagnostics nécessaires pour vendre votre bien',
-      createdAt: '2024-01-15',
-      image: '/images/placeholder.png',
-      link: '/articles/diagnostics-vente',
-    },
-    {
-      id: 2,
-      title: 'La performance énergétique',
-      description:
-        'Comment améliorer la performance énergétique de votre logement',
-      createdAt: '2024-01-16',
-      image: '/images/placeholder.png',
-      link: '/articles/performance-energetique',
-    },
-  ];
+  const showNotificationAndReload = (
+    message: string,
+    type: 'success' | 'error'
+  ) => {
+    setNotification({ message, type });
+    if (type === 'success') {
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+    }
+  };
 
-  const handleEdit = (article: DashboardArticle | null) => {
+  const handleEdit = (article: Article | null) => {
     setSelectedArticle(article);
     setIsModalOpen(true);
   };
 
-  const handleDelete = (id: number) => {
-    // Logique de suppression à implémenter
-    console.log("Suppression de l'article:", id);
+  const handleDelete = async (id: number) => {
+    if (
+      window.confirm(
+        'Êtes-vous sûr de vouloir supprimer cet article ?'
+      )
+    ) {
+      const success = await deleteArticle(id);
+      if (success) {
+        showNotificationAndReload(
+          'Article supprimé avec succès',
+          'success'
+        );
+      } else {
+        showNotificationAndReload(
+          "Erreur lors de la suppression de l'article",
+          'error'
+        );
+      }
+    }
   };
+
+  const handleSave = async (
+    data: Omit<Article, 'id' | 'createdAt' | 'updatedAt'>
+  ) => {
+    let success;
+    if (selectedArticle) {
+      const result = await updateArticle(selectedArticle.id, data);
+      success = !!result;
+      if (success) {
+        setIsModalOpen(false);
+        showNotificationAndReload(
+          'Article mis à jour avec succès',
+          'success'
+        );
+      } else {
+        showNotificationAndReload(
+          "Erreur lors de la mise à jour de l'article",
+          'error'
+        );
+      }
+    } else {
+      const result = await createArticle(data);
+      success = !!result;
+      if (success) {
+        setIsModalOpen(false);
+        showNotificationAndReload(
+          'Article créé avec succès',
+          'success'
+        );
+      } else {
+        showNotificationAndReload(
+          "Erreur lors de la création de l'article",
+          'error'
+        );
+      }
+    }
+  };
+
+  if (loadingArticles) {
+    return (
+      <div className={styles.dashboardContainer}>
+        <div className={styles.loading}>
+          Chargement des articles...
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.dashboardContainer}>
@@ -61,6 +124,8 @@ export default function PostsPage() {
         </button>
       </div>
 
+      {error && <div className={styles.error}>{error}</div>}
+
       <div className={styles.content}>
         <div className={styles.tableContainer}>
           <table className={styles.table}>
@@ -73,21 +138,27 @@ export default function PostsPage() {
               </tr>
             </thead>
             <tbody>
-              {mockArticles.map((article) => (
+              {articles.map((article) => (
                 <tr key={article.id}>
                   <td>{article.title}</td>
                   <td>{article.description}</td>
-                  <td>{article.createdAt}</td>
+                  <td>
+                    {new Date(article.createdAt).toLocaleDateString(
+                      'fr-FR'
+                    )}
+                  </td>
                   <td>
                     <button
                       className={styles.editButton}
                       onClick={() => handleEdit(article)}
+                      disabled={loadingCrud}
                     >
                       Modifier
                     </button>
                     <button
                       className={styles.deleteButton}
                       onClick={() => handleDelete(article.id)}
+                      disabled={loadingCrud}
                     >
                       Supprimer
                     </button>
@@ -104,10 +175,16 @@ export default function PostsPage() {
           isOpen={isModalOpen}
           article={selectedArticle}
           onClose={() => setIsModalOpen(false)}
-          onSave={(data) => {
-            console.log('Sauvegarde:', data);
-            setIsModalOpen(false);
-          }}
+          onSave={handleSave}
+          loading={loadingCrud}
+        />
+      )}
+
+      {notification && (
+        <Toast
+          message={notification.message}
+          type={notification.type}
+          onClose={() => setNotification(null)}
         />
       )}
     </div>

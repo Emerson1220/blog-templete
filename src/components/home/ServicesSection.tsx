@@ -25,7 +25,7 @@ interface ServiceCardProps {
 }
 
 const ServiceCard = ({ icon, title, onClick }: ServiceCardProps) => (
-  <div className={styles.serviceCard} onClick={onClick}>
+  <div className={styles.serviceCard}>
     <div className={styles.cardImage}>
       <Image
         src='/images/placeholder.png'
@@ -38,6 +38,9 @@ const ServiceCard = ({ icon, title, onClick }: ServiceCardProps) => (
       <div className={styles.icon}>{icon}</div>
       <h3>{title}</h3>
     </div>
+    <button className={styles.plusButton} onClick={onClick}>
+      <span>+</span>
+    </button>
   </div>
 );
 

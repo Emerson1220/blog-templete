@@ -3,59 +3,51 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './ArticlesSection.module.scss';
-
-const articles = [
-  {
-    title: 'Diagnostic Énergétique',
-    description:
-      'Comprendre le DPE et son importance pour votre bien immobilier',
-    image: '/images/hero-bg.jpg',
-    link: '/articles/diagnostic-energetique',
-  },
-  {
-    title: 'Audit Énergétique',
-    description:
-      'Les nouvelles obligations pour les maisons classées F et G',
-    image: '/images/hero-bg.jpg',
-    link: '/articles/audit-energetique',
-  },
-  {
-    title: 'Amiante',
-    description:
-      'Le diagnostic amiante : une obligation pour votre sécurité',
-    image: '/images/hero-bg.jpg',
-    link: '/articles/amiante',
-  },
-  {
-    title: 'Gaz & Électricité',
-    description: 'Les points clés des diagnostics gaz et électricité',
-    image: '/images/hero-bg.jpg',
-    link: '/articles/gaz-electricite',
-  },
-  {
-    title: 'Location',
-    description:
-      'Les diagnostics obligatoires pour la mise en location',
-    image: '/images/hero-bg.jpg',
-    link: '/articles/location',
-  },
-];
+import { useArticles } from '@/hooks/useArticles';
 
 export default function ArticlesSection() {
+  const { articles, loading, error } = useArticles();
+
+  if (loading) {
+    return (
+      <section className={styles.articlesSection}>
+        <div className={styles.container}>
+          <h2>Nos Articles</h2>
+          <div className={styles.loading}>
+            Chargement des articles...
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className={styles.articlesSection}>
+        <div className={styles.container}>
+          <h2>Nos Articles</h2>
+          <div className={styles.error}>
+            Une erreur est survenue lors du chargement des articles.
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className={styles.articlesSection}>
       <div className={styles.container}>
         <h2>Nos Articles</h2>
         <div className={styles.articlesGrid}>
-          {articles.map((article, index) => (
+          {articles.map((article) => (
             <Link
-              href={article.link}
-              key={index}
+              href={`/articles/${article.slug}`}
+              key={article.id}
               className={styles.articleCard}
             >
               <div className={styles.imageWrapper}>
                 <Image
-                  src='/images/placeholder.png'
+                  src={article.image}
                   alt={article.title}
                   fill
                   style={{ objectFit: 'cover' }}

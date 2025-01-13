@@ -1,0 +1,59 @@
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 16px 24px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  animation: slideIn 0.5s ease-out;
+  z-index: 2000;
+  min-width: 300px;
+  font-weight: 500;
+}
+
+.success {
+  background-color: #4caf50;
+  border: 1px solid #45a049;
+  color: white;
+}
+
+.error {
+  background-color: #f44336;
+  border: 1px solid #e53935;
+  color: white;
+}
+
+.message {
+  font-size: 1.1rem;
+  flex-grow: 1;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: 24px;
+  line-height: 1;
+  padding: 0;
+  cursor: pointer;
+  color: white;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

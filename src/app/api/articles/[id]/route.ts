@@ -1,72 +1,62 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { db } from '@/db';
 import { articles } from '@/db/schema';
 import { eq } from 'drizzle-orm';
 
-// PUT - Mettre à jour un article
-export async function PUT(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function POST(request: Request) {
   try {
+    const segments = request.url.split('/');
+    const id = parseInt(segments[segments.length - 1]);
     const body = await request.json();
-    const { id } = params;
-    const { ...updateData } = body;
 
     const updatedArticle = await db
       .update(articles)
-      .set({ ...updateData, updatedAt: new Date() })
-      .where(eq(articles.id, parseInt(id)))
+      .set({
+        ...body,
+        updatedAt: new Date(),
+      })
+      .where(eq(articles.id, id))
       .returning();
 
     if (!updatedArticle.length) {
       return NextResponse.json(
-        { success: false, error: 'Article not found' },
+        { error: 'Article non trouvé' },
         { status: 404 }
       );
     }
 
-    return NextResponse.json({
-      success: true,
-      data: updatedArticle[0],
-    });
+    return NextResponse.json({ data: updatedArticle[0] });
   } catch (error) {
     console.error('Error updating article:', error);
     return NextResponse.json(
-      { success: false, error: 'Failed to update article' },
+      { error: 'Erreur serveur' },
       { status: 500 }
     );
   }
 }
 
-// DELETE - Supprimer un article
-export async function DELETE(
-  _request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function DELETE(request: Request) {
   try {
-    const { id } = params;
+    const segments = request.url.split('/');
+    const id = parseInt(segments[segments.length - 1]);
 
     const deletedArticle = await db
       .delete(articles)
-      .where(eq(articles.id, parseInt(id)))
+      .where(eq(articles.id, id))
       .returning();
 
     if (!deletedArticle.length) {
       return NextResponse.json(
-        { success: false, error: 'Article not found' },
+        { error: 'Article non trouvé' },
         { status: 404 }
       );
     }
 
-    return NextResponse.json({
-      success: true,
-      data: deletedArticle[0],
-    });
+    return NextResponse.json({ success: true });
   } catch (error) {
     console.error('Error deleting article:', error);
     return NextResponse.json(
-      { success: false, error: 'Failed to delete article' },
+      { error: 'Erreur serveur' },
       { status: 500 }
     );
   }

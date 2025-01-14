@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styles from './ArticlesSection.module.scss';
 import { useArticles } from '@/hooks/useArticles';
+import type { Article } from '@/hooks/useArticles';
 
 export default function ArticlesSection() {
   const { articles, loading, error } = useArticles();
@@ -39,28 +40,36 @@ export default function ArticlesSection() {
       <div className={styles.container}>
         <h2>Nos Articles</h2>
         <div className={styles.articlesGrid}>
-          {articles.map((article) => (
-            <Link
-              href={`/articles/${article.slug}`}
-              key={article.id}
-              className={styles.articleCard}
-            >
-              <div className={styles.imageWrapper}>
-                <Image
-                  src={article.image}
-                  alt={article.title}
-                  fill
-                  style={{ objectFit: 'cover' }}
-                />
-                <div className={styles.overlay}></div>
-              </div>
-              <div className={styles.content}>
-                <h3>{article.title}</h3>
-                <p>{article.description}</p>
-                <span className={styles.readMore}>Lire la suite</span>
-              </div>
-            </Link>
-          ))}
+          {articles && articles.length > 0 ? (
+            articles.map((article: Article) => (
+              <Link
+                href={`/articles/${article.slug}`}
+                key={article.id}
+                className={styles.articleCard}
+              >
+                <div className={styles.imageWrapper}>
+                  <Image
+                    src={article.image || ''}
+                    alt={article.title}
+                    fill
+                    style={{ objectFit: 'cover' }}
+                  />
+                  <div className={styles.overlay}></div>
+                </div>
+                <div className={styles.content}>
+                  <h3>{article.title}</h3>
+                  <p>{article.description}</p>
+                  <span className={styles.readMore}>
+                    Lire la suite
+                  </span>
+                </div>
+              </Link>
+            ))
+          ) : (
+            <div className={styles.noArticles}>
+              Aucun article disponible pour le moment.
+            </div>
+          )}
         </div>
       </div>
     </section>

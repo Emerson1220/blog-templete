@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react';
+import { articles } from '@/db/schema';
+import { InferModel } from 'drizzle-orm';
 
-export interface Article {
-  id: number;
+export type Article = InferModel<typeof articles>;
+
+export interface ArticleData {
   title: string;
   description: string;
   content: string;
-  image: string;
+  image: string | null;
   slug: string;
-  createdAt: string;
-  updatedAt: string;
 }
 
 export function useArticles() {
@@ -26,7 +27,7 @@ export function useArticles() {
           );
         }
         const { data } = await response.json();
-        setArticles(data);
+        setArticles(data || []);
       } catch (err) {
         setError(
           err instanceof Error

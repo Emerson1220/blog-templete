@@ -6,26 +6,28 @@ import { Article } from '@/hooks/useArticles';
 
 interface ArticleModalProps {
   isOpen: boolean;
-  article: Article | null;
   onClose: () => void;
   onSave: (
     data: Omit<Article, 'id' | 'createdAt' | 'updatedAt'>
   ) => void;
+  article?: Article | null;
   loading?: boolean;
 }
 
 export default function ArticleModal({
   isOpen,
-  article,
   onClose,
   onSave,
-  loading = false,
+  article,
+  loading,
 }: ArticleModalProps) {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<
+    Omit<Article, 'id' | 'createdAt' | 'updatedAt'>
+  >({
     title: '',
     description: '',
     content: '',
-    image: '',
+    image: null,
     slug: '',
   });
 
@@ -41,31 +43,33 @@ export default function ArticleModal({
     }
   }, [article]);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    onSave(formData);
-  };
-
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   if (!isOpen) return null;
 
   return (
-    <div className={styles.modalOverlay}>
-      <div className={styles.modal}>
+    <div className={styles.modal}>
+      <div className={styles.modalContent}>
         <div className={styles.modalHeader}>
           <h2>{article ? "Modifier l'article" : 'Nouvel article'}</h2>
-          <button className={styles.closeButton} onClick={onClose}>
+          <button onClick={onClose} className={styles.closeButton}>
             ×
           </button>
         </div>
-
-        <form onSubmit={handleSubmit} className={styles.form}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            onSave(formData);
+          }}
+        >
           <div className={styles.formGroup}>
             <label htmlFor='title'>Titre</label>
             <input
@@ -75,10 +79,8 @@ export default function ArticleModal({
               value={formData.title}
               onChange={handleChange}
               required
-              disabled={loading}
             />
           </div>
-
           <div className={styles.formGroup}>
             <label htmlFor='description'>Description</label>
             <textarea
@@ -87,10 +89,8 @@ export default function ArticleModal({
               value={formData.description}
               onChange={handleChange}
               required
-              disabled={loading}
             />
           </div>
-
           <div className={styles.formGroup}>
             <label htmlFor='content'>Contenu</label>
             <textarea
@@ -99,25 +99,18 @@ export default function ArticleModal({
               value={formData.content}
               onChange={handleChange}
               required
-              disabled={loading}
-              rows={10}
             />
           </div>
-
           <div className={styles.formGroup}>
             <label htmlFor='image'>Image URL</label>
             <input
-              // type='url'
               type='text'
               id='image'
               name='image'
-              value={formData.image}
+              value={formData.image || ''}
               onChange={handleChange}
-              required
-              disabled={loading}
             />
           </div>
-
           <div className={styles.formGroup}>
             <label htmlFor='slug'>Slug</label>
             <input
@@ -127,26 +120,13 @@ export default function ArticleModal({
               value={formData.slug}
               onChange={handleChange}
               required
-              disabled={loading}
-              pattern='[a-z0-9-]+'
-              title='Uniquement des lettres minuscules, des chiffres et des tirets'
             />
           </div>
-
           <div className={styles.formActions}>
-            <button
-              type='button'
-              onClick={onClose}
-              className={styles.cancelButton}
-              disabled={loading}
-            >
+            <button type='button' onClick={onClose}>
               Annuler
             </button>
-            <button
-              type='submit'
-              className={styles.submitButton}
-              disabled={loading}
-            >
+            <button type='submit' disabled={loading}>
               {loading ? 'Enregistrement...' : 'Enregistrer'}
             </button>
           </div>

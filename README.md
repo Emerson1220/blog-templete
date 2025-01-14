@@ -132,3 +132,5 @@ Le déploiement se fait automatiquement à chaque push sur la branche main.
 ## License
 
 Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
+
+## Build

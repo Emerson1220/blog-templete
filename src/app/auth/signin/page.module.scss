@@ -1,0 +1,51 @@
+@use '../../../styles/variables' as *;
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $background-light;
+  padding: 1rem;
+}
+
+.card {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+
+  h1 {
+    margin-bottom: 2rem;
+    color: $text-color;
+    font-size: 1.5rem;
+  }
+}
+
+.githubButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #24292e;
+  border-radius: 6px;
+  background-color: #24292e;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: #2f363d;
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { signOut } from 'next-auth/react';
 import styles from './page.module.scss';
 import ArticleModal from '@/components/dashboard/ArticleModal';
 import Toast from '@/components/Toast';
@@ -114,15 +115,26 @@ export default function DashboardPage() {
 
   return (
     <div className={styles.dashboardContainer}>
-      <div className={styles.header}>
-        <h1>Gestion des Articles</h1>
-        <button
-          className={styles.addButton}
-          onClick={() => handleEdit(null)}
-        >
-          + Nouvel Article
-        </button>
-      </div>
+      <header className={styles.header}>
+        <h1>Tableau de bord</h1>
+        <div className={styles.headerActions}>
+          <button
+            className={styles.addButton}
+            onClick={() => {
+              setSelectedArticle(null);
+              setIsModalOpen(true);
+            }}
+          >
+            Nouvel article
+          </button>
+          <button
+            className={styles.logoutButton}
+            onClick={() => signOut({ callbackUrl: '/' })}
+          >
+            Se déconnecter
+          </button>
+        </div>
+      </header>
 
       {error && <div className={styles.error}>{error}</div>}
 

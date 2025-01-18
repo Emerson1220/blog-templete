@@ -1,136 +1,77 @@
-# Dieupart Blog v1.0.0
+# Next.js Blog Template
 
-Blog professionnel pour un diagnostiqueur immobilier, développé avec Next.js 15, SCSS, et NextAuth.
+A modern blog template built with Next.js 14, TypeScript, Tailwind CSS, and PostgreSQL.
 
-## Technologies Utilisées
+## Features
 
-- Next.js 15.1.3
-- SCSS pour le styling
-- NextAuth pour l'authentification
-- Neon Database (PostgreSQL)
-- Drizzle ORM
-- Vercel pour le déploiement
+- 🚀 Next.js 14 with App Router
+- 💻 TypeScript
+- 🎨 Tailwind CSS
+- 🗃️ PostgreSQL with Drizzle ORM
+- 🔐 Authentication ready
+- 📱 Fully responsive
+- 🎯 SEO optimized
 
-## Prérequis
+## Getting Started
 
-- Node.js 20.x
-- npm
-- Une base de données Neon (PostgreSQL)
-- Comptes développeur Google et/ou GitHub pour l'authentification OAuth
-
-## Installation
-
-1. Cloner le repository :
+1. Clone the repository:
 
 ```bash
-git clone [URL_DU_REPO]
-cd dieupart-blog-v1.0.0
+git clone https://github.com/yourusername/next-template-blog.git
+cd next-template-blog
 ```
 
-2. Installer les dépendances :
+2. Install dependencies:
 
 ```bash
 npm install
 ```
 
-3. Configurer les variables d'environnement :
-   Créer un fichier `.env` à la racine du projet avec les variables suivantes :
-
-```env
-# Auth
-NEXTAUTH_URL=http://localhost:3000
-NEXTAUTH_SECRET=votre_secret_nextauth
-
-# OAuth Providers
-GOOGLE_ID=votre_google_client_id
-GOOGLE_SECRET=votre_google_client_secret
-
-# Database
-DATABASE_URL=votre_url_neon_database
-
-# API
-NEXT_PUBLIC_API_URL=http://localhost:3000/api
-```
-
-4. Initialiser la base de données :
+3. Copy the environment variables:
 
 ```bash
-# Générer les migrations
-npm run db:generate
+cp .env.example .env.local
+```
 
-# Appliquer les migrations
-npm run db:migrate
+4. Update the environment variables in `.env.local`
 
-# (Optionnel) Ajouter des données de test
+5. Initialize the database:
+
+```bash
+npm run db:push
 npm run db:seed
 ```
 
-## Développement
-
-Lancer le serveur de développement :
+6. Start the development server:
 
 ```bash
 npm run dev
 ```
 
-Le site sera accessible à l'adresse : `http://localhost:3000`
-
-## Structure du Projet
+## Project Structure
 
 ```
-src/
-├── app/                    # Routes et pages Next.js
-│   ├── api/               # API Routes
-│   ├── dashboard/         # Interface d'administration
-│   └── ...
-├── components/            # Composants React réutilisables
-├── db/                    # Configuration de la base de données
-│   ├── migrations/       # Migrations Drizzle
-│   └── schema.ts        # Schéma de la base de données
-├── hooks/                 # Custom hooks React
-├── styles/               # Fichiers SCSS
-└── types/                # Types TypeScript
+├── src/
+│   ├── app/             # Next.js app router
+│   ├── components/      # React components
+│   ├── config/         # Configuration files
+│   ├── db/             # Database setup and schema
+│   ├── hooks/          # Custom React hooks
+│   └── styles/         # Global styles
+├── public/             # Static files
+└── ...configuration files
 ```
 
-## Fonctionnalités
+## Available Scripts
 
-- 🏠 Page d'accueil avec présentation des services
-- 📝 Blog avec gestion des articles
-- 🔒 Authentification sécurisée
-- 📊 Dashboard administrateur
-- 📱 Design responsive
-- 🎨 Interface moderne et professionnelle
-
-## Déploiement
-
-Le projet est configuré pour un déploiement automatique sur Vercel via GitHub Actions.
-
-### Configuration du Déploiement
-
-1. Créer un projet sur Vercel
-2. Configurer les variables d'environnement sur Vercel
-3. Ajouter les secrets suivants dans GitHub Actions :
-   - `VERCEL_TOKEN`
-   - `VERCEL_ORG_ID`
-   - `VERCEL_PROJECT_ID`
-   - `DATABASE_URL`
-   - `NEXTAUTH_URL`
-   - `NEXTAUTH_SECRET`
-   - `GOOGLE_ID`
-   - `GOOGLE_SECRET`
-
-Le déploiement se fait automatiquement à chaque push sur la branche main.
-
-## Contribution
-
-1. Fork le projet
-2. Créer une branche pour votre fonctionnalité (`git checkout -b feature/AmazingFeature`)
-3. Commit vos changements (`git commit -m 'Add some AmazingFeature'`)
-4. Push sur la branche (`git push origin feature/AmazingFeature`)
-5. Ouvrir une Pull Request
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+- `npm run db:push` - Push database schema
+- `npm run db:studio` - Open Drizzle Studio
+- `npm run db:seed` - Seed the database
 
 ## License
 
-Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
-
-## Build
+MIT License

@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { RiDashboardLine } from 'react-icons/ri';
 import styles from './Navbar.module.scss';
+import { navigationConfig } from '@/config/navigation';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,7 +17,7 @@ export default function Navbar() {
     <nav className={styles.navbar}>
       <div className={styles.logo}>
         <Image
-          src='/images/logo_dieupart-removebg-preview.png'
+          src='/images/placeholder.png'
           alt='Logo Dieupart'
           width={70}
           height={70}
@@ -36,28 +36,18 @@ export default function Navbar() {
       <div
         className={`${styles.navLinks} ${isOpen ? styles.open : ''}`}
       >
-        <Link href='/' onClick={toggleMenu}>
-          Accueil
-        </Link>
-        <Link href='/services' onClick={toggleMenu}>
-          Services
-        </Link>
-        <Link href='/audit' onClick={toggleMenu}>
-          Audit
-        </Link>
-        <Link href='/thermographie' onClick={toggleMenu}>
-          Thermographie
-        </Link>
-        <Link href='/contact' onClick={toggleMenu}>
-          Contact
-        </Link>
-        <Link
-          href='/dashboard'
-          className={styles.dashboardLink}
-          onClick={toggleMenu}
-        >
-          <RiDashboardLine size={24} />
-        </Link>
+        {navigationConfig.navbar.map((link, index) => (
+          <Link
+            key={index}
+            href={link.href}
+            onClick={toggleMenu}
+            className={
+              link.href === '/dashboard' ? styles.dashboardLink : ''
+            }
+          >
+            {link.label}
+          </Link>
+        ))}
       </div>
     </nav>
   );

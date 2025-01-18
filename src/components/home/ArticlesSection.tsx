@@ -13,10 +13,8 @@ export default function ArticlesSection() {
     return (
       <section className={styles.articlesSection}>
         <div className={styles.container}>
-          <h2>Nos Articles</h2>
-          <div className={styles.loading}>
-            Chargement des articles...
-          </div>
+          <h2>Our Articles</h2>
+          <div className={styles.loading}>Loading articles...</div>
         </div>
       </section>
     );
@@ -26,9 +24,9 @@ export default function ArticlesSection() {
     return (
       <section className={styles.articlesSection}>
         <div className={styles.container}>
-          <h2>Nos Articles</h2>
+          <h2>Our Articles</h2>
           <div className={styles.error}>
-            Une erreur est survenue lors du chargement des articles.
+            An error occurred while loading articles.
           </div>
         </div>
       </section>
@@ -38,7 +36,7 @@ export default function ArticlesSection() {
   return (
     <section className={styles.articlesSection}>
       <div className={styles.container}>
-        <h2>Nos Articles</h2>
+        <h2>Our Articles</h2>
         <div className={styles.articlesGrid}>
           {articles && articles.length > 0 ? (
             articles.map((article: Article) => (
@@ -49,7 +47,7 @@ export default function ArticlesSection() {
               >
                 <div className={styles.imageWrapper}>
                   <Image
-                    src={article.image || ''}
+                    src={article.image || '/images/placeholder.png'}
                     alt={article.title}
                     fill
                     style={{ objectFit: 'cover' }}
@@ -59,15 +57,13 @@ export default function ArticlesSection() {
                 <div className={styles.content}>
                   <h3>{article.title}</h3>
                   <p>{article.description}</p>
-                  <span className={styles.readMore}>
-                    Lire la suite
-                  </span>
+                  <span className={styles.readMore}>Read more</span>
                 </div>
               </Link>
             ))
           ) : (
             <div className={styles.noArticles}>
-              Aucun article disponible pour le moment.
+              No articles available at the moment.
             </div>
           )}
         </div>

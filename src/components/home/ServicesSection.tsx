@@ -10,11 +10,9 @@ import { TbTemperature } from 'react-icons/tb';
 import ServiceModal from './ServiceModal';
 import Image from 'next/image';
 
-// Import Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 
@@ -60,69 +58,57 @@ export default function ServicesSection() {
   const services = [
     {
       icon: <GiChemicalDrop />,
-      title: 'Diagnostic Amiante',
-      onClick: () => openModal('amiante'),
-      tags: 'vendre',
+      title: 'Service 1',
+      onClick: () => openModal('service1'),
+      tags: 'category1',
     },
     {
       icon: <GiWaterDrop />,
-      title: 'Diagnostic Plomb',
-      onClick: () => openModal('plomb'),
-      tags: 'vendre',
+      title: 'Service 2',
+      onClick: () => openModal('service2'),
+      tags: 'category1',
     },
     {
       icon: <BiRuler />,
-      title: 'Diagnostic Métrage',
-      onClick: () => openModal('metrage'),
-      tags: 'vendre',
+      title: 'Service 3',
+      onClick: () => openModal('service3'),
+      tags: 'category1',
     },
     {
       icon: <FaToilet />,
-      title: 'Diagnostic Assainissement',
-      onClick: () => openModal('assainissement'),
-      tags: 'vendre',
+      title: 'Service 4',
+      onClick: () => openModal('service4'),
+      tags: 'category1',
     },
     {
       icon: <FaGasPump />,
-      title: 'Diagnostic Gaz',
-      onClick: () => openModal('gaz'),
-      tags: 'vendre',
+      title: 'Service 5',
+      onClick: () => openModal('service5'),
+      tags: 'category1',
     },
     {
       icon: <FaBolt />,
-      title: 'Diagnostic Électricité',
-      onClick: () => openModal('electricite'),
-      tags: 'louer',
+      title: 'Service 6',
+      onClick: () => openModal('service6'),
+      tags: 'category2',
     },
     {
       icon: <FaBug />,
-      title: 'Diagnostic Termites',
-      onClick: () => openModal('termites'),
-      tags: 'louer',
+      title: 'Service 7',
+      onClick: () => openModal('service7'),
+      tags: 'category2',
     },
     {
       icon: <MdEnergySavingsLeaf />,
-      title: 'Audit Énergétique',
-      onClick: () => openModal('energetique'),
-      tags: 'louer',
+      title: 'Service 8',
+      onClick: () => openModal('service8'),
+      tags: 'category2',
     },
     {
       icon: <TbTemperature />,
-      title: 'Diagnostic Thermographie',
-      onClick: () => openModal('thermographie'),
-      tags: 'louer',
-    },
-    {
-      icon: <TbTemperature />,
-      title: 'Plan Pluriannuel de Travaux (PPT)',
-      onClick: () => openModal('ppt'),
-      tags: 'louer',
-    },
-    {
-      icon: <TbTemperature />,
-      title: 'Diagnostic technique global (DTG)',
-      onClick: () => openModal('dtg'),
-      tags: 'louer',
+      title: 'Service 9',
+      onClick: () => openModal('service9'),
+      tags: 'category2',
     },
   ];
 
@@ -132,38 +118,23 @@ export default function ServicesSection() {
       <div className={styles.container}>
         <div className={styles.servicesFlex}>
           <div className={styles.servicesContains}>
-            <h3>Vous vendez</h3>
+            <h3>Category 1</h3>
             <div className={styles.servicesColumn}>
               <Swiper
                 modules={[Navigation]}
                 navigation={true}
                 spaceBetween={16}
-                className={`${styles.swiper} swiper-vendre`}
+                className={`${styles.swiper} swiper-category1`}
                 breakpoints={{
-                  320: {
-                    slidesPerView: 1,
-                    spaceBetween: 16,
-                  },
-                  640: {
-                    slidesPerView: 2,
-                    spaceBetween: 16,
-                  },
-                  768: {
-                    slidesPerView: 3,
-                    spaceBetween: 16,
-                  },
-                  1024: {
-                    slidesPerView: 4,
-                    spaceBetween: 16,
-                  },
-                  1280: {
-                    slidesPerView: 5,
-                    spaceBetween: 16,
-                  },
+                  320: { slidesPerView: 1, spaceBetween: 16 },
+                  640: { slidesPerView: 2, spaceBetween: 16 },
+                  768: { slidesPerView: 3, spaceBetween: 16 },
+                  1024: { slidesPerView: 4, spaceBetween: 16 },
+                  1280: { slidesPerView: 5, spaceBetween: 16 },
                 }}
               >
                 {services
-                  .filter((service) => service.tags === 'vendre')
+                  .filter((service) => service.tags === 'category1')
                   .map((service, index) => (
                     <SwiperSlide
                       key={index}
@@ -181,38 +152,23 @@ export default function ServicesSection() {
           </div>
 
           <div className={styles.servicesContains}>
-            <h3>Vous louez</h3>
+            <h3>Category 2</h3>
             <div className={styles.servicesColumn}>
               <Swiper
                 modules={[Navigation]}
                 navigation={true}
                 spaceBetween={16}
-                className={`${styles.swiper} swiper-louer`}
+                className={`${styles.swiper} swiper-category2`}
                 breakpoints={{
-                  320: {
-                    slidesPerView: 1,
-                    spaceBetween: 16,
-                  },
-                  640: {
-                    slidesPerView: 2,
-                    spaceBetween: 16,
-                  },
-                  768: {
-                    slidesPerView: 3,
-                    spaceBetween: 16,
-                  },
-                  1024: {
-                    slidesPerView: 4,
-                    spaceBetween: 16,
-                  },
-                  1280: {
-                    slidesPerView: 5,
-                    spaceBetween: 16,
-                  },
+                  320: { slidesPerView: 1, spaceBetween: 16 },
+                  640: { slidesPerView: 2, spaceBetween: 16 },
+                  768: { slidesPerView: 3, spaceBetween: 16 },
+                  1024: { slidesPerView: 4, spaceBetween: 16 },
+                  1280: { slidesPerView: 5, spaceBetween: 16 },
                 }}
               >
                 {services
-                  .filter((service) => service.tags === 'louer')
+                  .filter((service) => service.tags === 'category2')
                   .map((service, index) => (
                     <SwiperSlide
                       key={index}

@@ -8,30 +8,30 @@ export default function WelcomeSection() {
     <section className={styles.welcomeSection}>
       <div className={styles.container}>
         <div className={styles.content}>
-          <h2>DieuPart</h2>
+          <h2>Company Name</h2>
           <h3>
-            Un diagnostiqueur performant pour tous vos projets
-            immobiliers en Île-de-France
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit
           </h3>
 
           <p>
-            DieuPart est votre interlocuteur réactif et performant.
-            Notre expérience dans le secteur du bâtiment vous garantit
-            une réussite totale de vos projets immobiliers.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Sed do eiusmod tempor incididunt ut labore et dolore magna
+            aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation.
           </p>
 
           <p>
-            Que ce soit pour une vente, une location, un diagnostic
-            technique global (DTG), ou un audit énergétique, notre
-            équipe de diagnostiqueurs certifiés est à votre écoute
-            pour vous accompagner avec rigueur et professionnalisme.
+            Duis aute irure dolor in reprehenderit in voluptate velit
+            esse cillum dolore eu fugiat nulla pariatur. Excepteur
+            sint occaecat cupidatat non proident, sunt in culpa qui
+            officia.
           </p>
         </div>
 
         <div className={styles.imageWrapper}>
           <Image
             src='/images/placeholder.png'
-            alt='DieuPart Diagnostic'
+            alt='Welcome Image'
             fill
             style={{ objectFit: 'cover' }}
           />

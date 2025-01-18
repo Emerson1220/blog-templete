@@ -1,65 +1,45 @@
-import { drizzle } from 'drizzle-orm/neon-http';
-import { neon } from '@neondatabase/serverless';
-import * as schema from './schema';
+import { db } from '.';
 import { articles } from './schema';
-import * as dotenv from 'dotenv';
-
-// Charger les variables d'environnement
-dotenv.config();
-
-if (!process.env.DATABASE_URL) {
-  throw new Error('DATABASE_URL is not defined');
-}
-
-const sql = neon(process.env.DATABASE_URL);
-const db = drizzle(sql, { schema });
-
-const testArticles = [
-  {
-    title: 'Les diagnostics obligatoires pour la vente',
-    description:
-      'Découvrez tous les diagnostics nécessaires pour vendre votre bien immobilier en 2024.',
-    content: 'Contenu détaillé sur les diagnostics obligatoires...',
-    image: '/images/placeholder.png',
-    slug: 'diagnostics-obligatoires-vente',
-  },
-  {
-    title: 'Comprendre le DPE',
-    description:
-      'Guide complet sur le Diagnostic de Performance Énergétique.',
-    content: 'Tout ce que vous devez savoir sur le DPE...',
-    image: '/images/placeholder.png',
-    slug: 'comprendre-dpe',
-  },
-  {
-    title: 'Audit énergétique : nouvelles obligations',
-    description:
-      'Les nouvelles réglementations pour les logements énergivores.',
-    content:
-      "Les changements importants concernant l'audit énergétique...",
-    image: '/images/placeholder.png',
-    slug: 'audit-energetique-obligations',
-  },
-];
 
 async function seed() {
   try {
-    console.log("🌱 Début de l'insertion des données de test...");
+    // Delete existing records
+    await db.delete(articles);
 
-    // Insertion des articles
-    for (const article of testArticles) {
-      await db.insert(articles).values(article);
-      console.log(`✓ Article inséré : ${article.title}`);
-    }
+    // Insert sample articles
+    await db.insert(articles).values([
+      {
+        title: 'Sample Article 1',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        content:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        slug: 'sample-article-1',
+        image: '/images/placeholder.png',
+      },
+      {
+        title: 'Sample Article 2',
+        description:
+          'Ut enim ad minim veniam, quis nostrud exercitation ullamco.',
+        content:
+          'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+        slug: 'sample-article-2',
+        image: '/images/placeholder.png',
+      },
+      {
+        title: 'Sample Article 3',
+        description:
+          'Duis aute irure dolor in reprehenderit in voluptate velit.',
+        content:
+          'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+        slug: 'sample-article-3',
+        image: '/images/placeholder.png',
+      },
+    ]);
 
-    console.log('✅ Données de test insérées avec succès !');
-    process.exit(0);
+    console.log('Seed completed successfully');
   } catch (error) {
-    console.error(
-      "❌ Erreur lors de l'insertion des données :",
-      error
-    );
-    process.exit(1);
+    console.error('Error seeding database:', error);
   }
 }
 

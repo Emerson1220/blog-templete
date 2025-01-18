@@ -1,5 +1,6 @@
 'use client';
 
+import { navigationConfig } from '@/config/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
@@ -9,14 +10,6 @@ import ContactModal from './ContactModal';
 export default function Footer() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
-  const navigation = [
-    { name: 'Accueil', href: '/' },
-    { name: 'Services', href: '/services' },
-    { name: 'Audit', href: '/audit' },
-    { name: 'Thermographie', href: '/thermographie' },
-    { name: 'Contact', href: '/contact' },
-  ];
-
   return (
     <>
       <footer className={styles.footer}>
@@ -24,8 +17,8 @@ export default function Footer() {
           <div className={styles.section}>
             <div className={styles.logo}>
               <Image
-                src='/images/logo_dieupart-removebg-preview.png'
-                alt='Logo Dieupart'
+                src='/images/placeholder.png'
+                alt='Company Logo'
                 width={150}
                 height={150}
                 priority
@@ -36,11 +29,13 @@ export default function Footer() {
           <div className={styles.section}>
             <h3>Navigation</h3>
             <nav className={styles.nav}>
-              {navigation.map((item) => (
-                <Link key={item.name} href={item.href}>
-                  {item.name}
-                </Link>
-              ))}
+              {navigationConfig.footer.mainLinks.map(
+                (item, index) => (
+                  <Link key={index} href={item.href}>
+                    {item.label}
+                  </Link>
+                )
+              )}
             </nav>
           </div>
 
@@ -50,15 +45,16 @@ export default function Footer() {
               onClick={() => setIsContactModalOpen(true)}
               className={styles.contactButton}
             >
-              Contactez-nous
+              Contact Us
             </button>
           </div>
         </div>
 
         <div className={styles.bottom}>
           <p>
-            © {new Date().getFullYear()} DieuPart Expertise. Tous
-            droits réservés.
+            © {new Date().getFullYear()}{' '}
+            {navigationConfig.footer.companyName}. All rights
+            reserved.
           </p>
         </div>
       </footer>

@@ -14,49 +14,46 @@ export default function AboutSection() {
   const features = [
     {
       icon: <FaFileAlt />,
-      title: 'Rapports',
-      description: 'Des rapports conformes aux normes exigées',
+      title: 'Feature 1',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
     },
     {
       icon: <FaCheckCircle />,
-      title: 'Diagnostiques',
-      description: 'Des diagnostics assurés par la compagnie AXA',
+      title: 'Feature 2',
+      description:
+        'Sed do eiusmod tempor incididunt ut labore et dolore',
     },
     {
       icon: <FaEuroSign />,
-      title: 'Prix',
+      title: 'Feature 3',
       description:
-        "Des offres adaptées : renouvellement gratuit des expertises jusqu'à l'acte authentique",
+        'Ut enim ad minim veniam, quis nostrud exercitation ullamco',
     },
     {
       icon: <FaClock />,
-      title: 'Disponibilité',
-      description: "Des délais d'intervention sous 48h",
+      title: 'Feature 4',
+      description:
+        'Duis aute irure dolor in reprehenderit in voluptate',
     },
     {
       icon: <FaHeadset />,
-      title: 'Services',
+      title: 'Feature 5',
       description:
-        'Un service après-vente disponible pour vous apporter des explications complémentaires',
+        'Excepteur sint occaecat cupidatat non proident, sunt in culpa',
     },
     {
       icon: <FaCertificate />,
-      title: 'Compétences',
+      title: 'Feature 6',
       description:
-        'Un contrôle de votre bien par un technicien certifié',
+        'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut',
     },
   ];
 
   return (
     <section className={styles.aboutSection}>
       <div className={styles.container}>
-        <h2>Nos Engagements</h2>
-        {/* <svg className={styles.path} viewBox='0 0 1200 600'>
-          <path d='M100,100 C200,100 300,100 400,100 L700,100 C800,100 900,100 1000,100 M100,300 C200,300 300,300 400,300 L700,300 C800,300 900,300 1000,300' />
-          <circle cx='100' cy='100' r='8' />
-          <circle cx='400' cy='100' r='8' />
-          <circle cx='700' cy='100' r='8' />
-        </svg> */}
+        <h2>Our Features</h2>
         <div className={styles.featuresGrid}>
           {features.map((feature, index) => (
             <div key={index} className={styles.featureCard}>

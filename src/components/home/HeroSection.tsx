@@ -8,8 +8,8 @@ export default function HeroSection() {
     <section className={styles.hero}>
       <div className={styles.heroBackground}>
         <Image
-          src='/images/hero-bg.jpg'
-          alt='Diagnostic énergétique background'
+          src='/images/placeholder.png'
+          alt='Hero background'
           fill
           priority
           sizes='100vw'
@@ -25,15 +25,15 @@ export default function HeroSection() {
       <div className={styles.content}>
         <div className={styles.logo}>
           <Image
-            src='/images/logo_dieupart-removebg-preview.png'
-            alt='Logo Dieupart'
+            src='/images/placeholder.png'
+            alt='Company Logo'
             width={350}
             height={350}
             priority
           />
         </div>
-        <h1>Diagnostics et contrôles immobiliers</h1>
-        <p>Des solutions durables pour votre habitat</p>
+        <h1>Lorem Ipsum Dolor Sit Amet</h1>
+        <p>Consectetur adipiscing elit sed do eiusmod</p>
       </div>
     </section>
   );

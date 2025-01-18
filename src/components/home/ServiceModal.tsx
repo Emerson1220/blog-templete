@@ -33,125 +33,103 @@ export default function ServiceModal({
   if (!isOpen) return null;
 
   const serviceContent = {
-    amiante: {
-      title: 'Diagnostic Amiante',
+    service1: {
+      title: 'Service 1',
       description:
-        "Le diagnostic amiante est obligatoire pour toute vente d'un bien immobilier dont le permis de construire a été délivré avant le 1er juillet 1997.",
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
       details: [
-        "Repérage des matériaux contenant de l'amiante",
-        "Évaluation de l'état de conservation",
-        'Recommandations de travaux si nécessaire',
-        "Validité illimitée si absence d'amiante",
+        'Feature 1 description',
+        'Feature 2 description',
+        'Feature 3 description',
+        'Feature 4 description',
       ],
     },
-    plomb: {
-      title: 'Diagnostic Plomb',
+    service2: {
+      title: 'Service 2',
       description:
-        "Le diagnostic plomb (CREP) est obligatoire pour la vente ou la location d'un logement construit avant 1949.",
+        'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
       details: [
-        'Repérage des revêtements contenant du plomb',
-        'Mesure de la concentration en plomb',
-        'Évaluation des risques',
-        'Préconisations pour éliminer les risques',
+        'Feature 1 description',
+        'Feature 2 description',
+        'Feature 3 description',
+        'Feature 4 description',
       ],
     },
-    metrage: {
-      title: 'Diagnostic Métrage',
+    service3: {
+      title: 'Service 3',
       description:
-        "La loi Carrez impose le mesurage de la surface privative pour toute vente d'un lot en copropriété.",
+        'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
       details: [
-        'Mesure précise de la surface habitable',
-        'Calcul de la surface Carrez',
-        'Plan détaillé du bien',
-        'Document obligatoire pour les actes de vente',
+        'Feature 1 description',
+        'Feature 2 description',
+        'Feature 3 description',
+        'Feature 4 description',
       ],
     },
-    assainissement: {
-      title: 'Diagnostic Assainissement',
+    service4: {
+      title: 'Service 4',
       description:
-        "Le diagnostic assainissement est obligatoire pour toute vente d'un bien non raccordé au réseau public d'assainissement.",
+        'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
       details: [
-        'Contrôle des installations',
-        'Vérification de la conformité',
-        'Identification des dysfonctionnements',
-        'Préconisations de mise aux normes',
+        'Feature 1 description',
+        'Feature 2 description',
+        'Feature 3 description',
+        'Feature 4 description',
       ],
     },
-    gaz: {
-      title: 'Diagnostic Gaz',
+    service5: {
+      title: 'Service 5',
       description:
-        "Le diagnostic gaz est obligatoire pour la vente d'un logement équipé d'une installation de gaz de plus de 15 ans.",
+        'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
       details: [
-        "Vérification de l'installation",
-        'Contrôle des équipements',
-        'Détection des anomalies',
-        'Conseils de sécurité',
+        'Feature 1 description',
+        'Feature 2 description',
+        'Feature 3 description',
+        'Feature 4 description',
       ],
     },
-    electricite: {
-      title: 'Diagnostic Électricité',
+    service6: {
+      title: 'Service 6',
       description:
-        "Le diagnostic électrique est obligatoire pour la vente d'un logement dont l'installation électrique a plus de 15 ans.",
+        'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.',
       details: [
-        "Vérification de l'installation électrique",
-        'Contrôle du tableau électrique',
-        'Identification des anomalies',
-        'Recommandations de mise en sécurité',
+        'Feature 1 description',
+        'Feature 2 description',
+        'Feature 3 description',
+        'Feature 4 description',
       ],
     },
-    termites: {
-      title: 'Diagnostic Termites',
+    service7: {
+      title: 'Service 7',
       description:
-        "Le diagnostic termites est obligatoire pour la vente d'un bien situé dans une zone déclarée à risque par la préfecture.",
+        'Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.',
       details: [
-        'Inspection des bois et matériaux',
-        'Détection des termites',
-        'Évaluation des dommages',
-        'Préconisations de traitement',
+        'Feature 1 description',
+        'Feature 2 description',
+        'Feature 3 description',
+        'Feature 4 description',
       ],
     },
-    energetique: {
-      title: 'Audit Énergétique',
+    service8: {
+      title: 'Service 8',
       description:
-        "L'audit énergétique est obligatoire pour la vente des maisons et immeubles classés F ou G au DPE.",
+        'Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.',
       details: [
-        'Analyse complète du bâtiment',
-        'Évaluation des performances',
-        "Scénarios d'amélioration",
-        'Estimation des coûts de rénovation',
+        'Feature 1 description',
+        'Feature 2 description',
+        'Feature 3 description',
+        'Feature 4 description',
       ],
     },
-    thermographie: {
-      title: 'Diagnostic Thermographie',
+    service9: {
+      title: 'Service 9',
       description:
-        "La thermographie infrarouge permet de détecter les défauts d'isolation et les ponts thermiques d'un bâtiment.",
+        'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum.',
       details: [
-        'Imagerie thermique',
-        'Détection des déperditions',
-        'Analyse des points faibles',
-        "Recommandations d'amélioration",
-      ],
-    },
-    ppt: {
-      title: 'Plan Pluriannuel de Travaux (PPT)',
-      description:
-        'Le PPT est obligatoire pour les copropriétés de plus de 15 ans, il projette les travaux nécessaires sur 10 ans.',
-      details: [
-        "Analyse de l'état de l'immeuble",
-        'Planification des travaux',
-        'Estimation des coûts',
-        'Priorisation des interventions',
-      ],
-    },
-    dtg: {
-      title: 'Diagnostic Technique Global (DTG)',
-      description:
-        "Le DTG permet d'avoir une vision globale de l'état d'un immeuble et des travaux à prévoir.",
-      details: [
-        'Analyse technique complète',
-        'Évaluation énergétique',
-        'Plan de travaux',
-        'Estimation budgétaire',
+        'Feature 1 description',
+        'Feature 2 description',
+        'Feature 3 description',
+        'Feature 4 description',
       ],
     },
   };

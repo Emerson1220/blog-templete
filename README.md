@@ -14,7 +14,7 @@ Un template moderne de blog construit avec Next.js, TypeScript, Prisma et Postgr
 
 ## 🛠 Prérequis
 
-- Node.js (v18+)
+- Node.js (v22+)
 - PostgreSQL
 - npm ou yarn
 - Vercel CLI (pour le déploiement)
@@ -24,7 +24,7 @@ Un template moderne de blog construit avec Next.js, TypeScript, Prisma et Postgr
 1. Cloner le repository :
 
 ```bash
-git clone [url-du-repo]
+git clone https://github.com/Emerson1220/blog-templete.git
 cd next-template-blog
 ```
 

@@ -1,8 +1,15 @@
 import { useState, useEffect } from 'react';
-import { articles } from '@/db/schema';
-import { InferModel } from 'drizzle-orm';
 
-export type Article = InferModel<typeof articles>;
+export interface Article {
+  id: number;
+  title: string;
+  description: string;
+  content: string;
+  image: string | null;
+  slug: string;
+  created_at: Date;
+  updated_at: Date;
+}
 
 export interface ArticleData {
   title: string;

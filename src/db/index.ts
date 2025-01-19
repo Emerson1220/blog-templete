@@ -6,8 +6,10 @@ import articlesData from '@/data/articles.json';
 // Connexion temporairement désactivée
 const mockDb = {
   query: async () => [],
-  insert: async () => ({
-    returning: () => articlesData.articles,
+  insert: () => ({
+    values: () => ({
+      returning: () => articlesData.articles,
+    }),
   }),
   select: () => ({
     from: () => ({
